@@ -7,8 +7,7 @@
 	<artifactId>webapp-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-<!--	<name>webapp-demo</name>-->
-	<description>Demo project for Spring Boot</description>
+	<description>Demo project app for Spring Boot and React, Angular</description>
 	<modules>
 		<module>react-webapp</module>
 		<module>angular-webapp</module>

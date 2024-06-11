@@ -6,18 +6,18 @@ const { Title } = Typography
 function ToDoTable({ todos, onComplete, onDelete }) {
     const columns = [
         {
-            title: 'Description',
+            title: 'Opis zadania',
             dataIndex: 'description',
             key: 'description',
         },
         {
-            title: 'Completed',
+            title: 'Zakończone?',
             dataIndex: 'completed',
             key: 'completed',
             align: 'center',
         },
         {
-            title: 'Complete',
+            title: 'Zakończ',
             dataIndex: '',
             key: 'v',
             align: 'center',
@@ -25,14 +25,14 @@ function ToDoTable({ todos, onComplete, onDelete }) {
                 <Button
                     icon={<CheckOutlined />}
                     type='primary'
-                    shape="circle"
+                    shape="round"
                     onClick={(e) => { onComplete(record.key, e) }}
                 >
                 </Button>
             ),
         },
         {
-            title: 'Delete',
+            title: 'Usuń',
             dataIndex: '',
             key: 'x',
             align: 'center',
@@ -60,7 +60,7 @@ function ToDoTable({ todos, onComplete, onDelete }) {
 
     return (
         <>
-            <Title level={3}>ToDo Table</Title>
+            <Title level={3}>Zadania do wykonania</Title>
             <Table
                 dataSource={dataSource}
                 columns={columns}

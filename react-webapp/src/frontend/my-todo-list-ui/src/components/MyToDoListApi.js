@@ -28,5 +28,5 @@ function updateToDo(id, completed) {
 // -- Axios
 
 const instance = axios.create({
-    baseURL: 'http://localhost:8080'
+    baseURL: 'https://localhost:8080'
 })

@@ -67,15 +67,15 @@ function Home() {
 
     return (
         <Layout>
-            <Header style={headerStyle}>MyToDoList</Header>
+            <Header style={headerStyle}>Lista zadan na dziś</Header>
             <Content>
-                <Row justify="space-evenly">
-                    <Col span={6}>
+                <Row justify="center">
+                    <Col span={15}>
                         <ToDoForm
                             onFinish={onFinish}
                         />
                     </Col>
-                    <Col span={17}>
+                    <Col span={20}>
                         <ToDoTable
                             todos={todos}
                             onComplete={onComplete}

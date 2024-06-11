@@ -5,16 +5,16 @@ const { Title } = Typography
 function ToDoForm({ onFinish }) {
     return (
         <>
-            <Title level={3}>Add ToDo</Title>
+            <Title level={3}>Dodaj zadanie</Title>
             <Form
-                name="basic"
+                name="layout-multiple-horizontal"
                 autoComplete="off"
                 onFinish={onFinish}
             >
                 <Form.Item
-                    label="Description"
+                    label="Opis zadania"
                     name="description"
-                    rules={[{ required: true, message: 'Please write the description!' }]}
+                    rules={[{ required: true, message: 'Prosze wprowadz opis zadania!' }]}
                 >
                     <Input />
                 </Form.Item>
@@ -25,7 +25,7 @@ function ToDoForm({ onFinish }) {
                         shape="round"
                         htmlType="submit"
                     >
-                        Submit
+                        Zapisz
                     </Button>
                 </Form.Item>
             </Form>
