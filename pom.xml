@@ -12,5 +12,6 @@
 		<module>react-webapp</module>
 		<module>angular-webapp</module>
 		<module>spring-app-backend</module>
-	</modules>
+        <module>command-shell-app</module>
+    </modules>
 </project>
