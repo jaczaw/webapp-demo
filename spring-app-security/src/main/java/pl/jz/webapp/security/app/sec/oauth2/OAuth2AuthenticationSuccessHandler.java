@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Optional;
 
-import static pl.jz.webapp.security.app.sec.oauth2.HttpCookieOauth2AuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
+import static pl.jz.webapp.security.app.sec.oauth2.HttpCookieOAuth2AuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
 
 @Component
 @RequiredArgsConstructor
@@ -26,7 +26,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
     private final TokenProvider tokenProvider;
     private final AppProperties appProperties;
-    private final HttpCookieOauth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestReqpository;
+    private final HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestReqpository;
 
 
     @Override

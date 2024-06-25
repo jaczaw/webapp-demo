@@ -34,20 +34,20 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private static final  String OAUTH2_BASE_URI = "/oauth2/authorize";
-    private static final  String OAUTH2_REDIRECTION_ENDPOINT = "/oauth2/callback";
+    private final static String OAUTH2_BASE_URI = "/oauth2/authorize";
+    private final static String OAUTH2_REDIRECTION_ENDPOINT = "/oauth2/callback/*";
 
     private final CustomOAuth2UserService customOAuth2UserService;
     private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
     private final OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
-    private final HttpCookieOauth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
+    private final HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
     private final TokenAuthenticationFilter tokenAuthenticationFilter;
     private final ClientRegistrationRepository clientRegistrationRepository;
 
 
     @Bean
-    public HttpCookieOauth2AuthorizationRequestRepository cookieOAuth2AuthorizationRequestRepository() {
-        return new HttpCookieOauth2AuthorizationRequestRepository();
+    public HttpCookieOAuth2AuthorizationRequestRepository cookieOAuth2AuthorizationRequestRepository() {
+        return new HttpCookieOAuth2AuthorizationRequestRepository();
     }
 
     @Bean
@@ -108,4 +108,5 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }
