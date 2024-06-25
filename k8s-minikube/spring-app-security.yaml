@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-app-security
+  labels:
+    app: spring-app-security
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: spring-app-security
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-app-security
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-app-security
+  template:
+    metadata:
+      labels:
+        app: spring-app-security
+    spec:
+      containers:
+        - name: spring-app-security
+          image: spring-app-security:0.0.1-SNAPSHOT
+          imagePullPolicy: Never
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: POSTGRES_HOST
+              value: postgres
+            - name: POSTGRES_PORT
+              value: "5432"
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: http

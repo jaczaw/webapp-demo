@@ -13,5 +13,6 @@
 		<module>angular-webapp</module>
 		<module>spring-app-backend</module>
         <module>command-shell-app</module>
+        <module>spring-app-security</module>
     </modules>
 </project>
