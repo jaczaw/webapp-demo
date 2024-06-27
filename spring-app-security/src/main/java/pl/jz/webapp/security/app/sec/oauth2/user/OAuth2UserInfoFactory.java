@@ -25,5 +25,17 @@ public class OAuth2UserInfoFactory {
             throw new OAuth2AuthenticationProcessingException(String.format("Login with %s is not supported.", registrationId));
         }
     }
+    public static OAuth2UserInfo getOAuth2UserInfo(AuthProvider authProvider, Map<String, Object> attributes) {
+        return switch (authProvider){
+            case GOOGLE -> new GoogleOAuth2UserInfo(attributes);
+            case FACEBOOK -> new FacebookOAuth2UserInfo(attributes);
+            case GITHUB -> new GithubOAuth2UserInfo(attributes);
+            case LINKEDIN -> new LinkedinOAuth2UserInfo(attributes);
+            case TWITTER -> new TwitterOAuth2UserInfo(attributes);
+            case null -> throw new NullPointerException(
+                    "AuthProvider type cannot be null");
+
+        };
+    }
 
 }

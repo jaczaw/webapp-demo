@@ -45,10 +45,10 @@ public class SecurityConfig {
     private final ClientRegistrationRepository clientRegistrationRepository;
 
 
-    @Bean
-    public HttpCookieOAuth2AuthorizationRequestRepository cookieOAuth2AuthorizationRequestRepository() {
-        return new HttpCookieOAuth2AuthorizationRequestRepository();
-    }
+//    @Bean
+//    public HttpCookieOAuth2AuthorizationRequestRepository cookieOAuth2AuthorizationRequestRepository() {
+//        return new HttpCookieOAuth2AuthorizationRequestRepository();
+//    }
 
     @Bean
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
@@ -62,7 +62,8 @@ public class SecurityConfig {
                 auth -> auth
                         .requestMatchers("/token/refresh/**").permitAll()
                         .requestMatchers("/", "/error").permitAll()
-                        .requestMatchers("/auth/**", "/oauth2/**").permitAll()
+                        .requestMatchers("/auth/**", "/oauth2/**","/manage/**").permitAll()
+
                         .anyRequest()
                         .authenticated()
         );
