@@ -32,3 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 /spring-app-security/src/main/resources/keystore/cert-key-web-app.p12
+/.run/

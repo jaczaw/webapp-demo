@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'http://localhost:8080';
+export const API_BASE_URL = 'https://localhost:8443';
 export const OAUTH2_AUTHORIZE_URI = '/oauth2/authorize';
 export const UI_BASE_URL = 'http://localhost:4200';
 
