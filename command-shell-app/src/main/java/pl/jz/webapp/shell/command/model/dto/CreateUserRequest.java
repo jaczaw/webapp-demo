@@ -1,10 +1,9 @@
-package pl.jz.webapp.security.app.controller.dto;
+package pl.jz.webapp.shell.command.model.dto;
 
 import jakarta.validation.constraints.NotBlank;
 
 public record CreateUserRequest(
-        //@NotNull
-        Long id,
+
         @NotBlank String login,
         @NotBlank String name,
         @NotBlank String surname,

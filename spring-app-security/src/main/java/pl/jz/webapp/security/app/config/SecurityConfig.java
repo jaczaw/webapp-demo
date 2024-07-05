@@ -34,8 +34,15 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final static String OAUTH2_BASE_URI = "/oauth2/authorize";
-    private final static String OAUTH2_REDIRECTION_ENDPOINT = "/oauth2/callback/*";
+    private static final String OAUTH2_BASE_URI = "/oauth2/authorize";
+    private static final String OAUTH2_REDIRECTION_ENDPOINT = "/oauth2/callback/*";
+    private static final String[] GET_ROLE_NAME = {};
+    private static final String[] GET_PUBLIC = {
+            "/token/refresh/**",
+            "/", "/error", "/auth/**",
+            "/oauth2/**","/manage/**",
+            "/api/users/**","/api/**"
+    };
 
     private final CustomOAuth2UserService customOAuth2UserService;
     private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
@@ -44,14 +51,9 @@ public class SecurityConfig {
     private final TokenAuthenticationFilter tokenAuthenticationFilter;
     private final ClientRegistrationRepository clientRegistrationRepository;
 
-
-//    @Bean
-//    public HttpCookieOAuth2AuthorizationRequestRepository cookieOAuth2AuthorizationRequestRepository() {
-//        return new HttpCookieOAuth2AuthorizationRequestRepository();
-//    }
-
     @Bean
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
+
         http.csrf(AbstractHttpConfigurer::disable);
         http.cors(Customizer.withDefaults());
         http.sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
@@ -60,10 +62,8 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(
                 auth -> auth
-                        .requestMatchers("/token/refresh/**").permitAll()
-                        .requestMatchers("/", "/error").permitAll()
-                        .requestMatchers("/auth/**", "/oauth2/**","/manage/**").permitAll()
-
+                        .requestMatchers(GET_PUBLIC).permitAll()
+                        //.requestMatchers(HttpMethod.PUT,"/api/users/**").permitAll()
                         .anyRequest()
                         .authenticated()
         );

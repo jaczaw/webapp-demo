@@ -2,6 +2,7 @@ package pl.jz.webapp.security.app.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import pl.jz.webapp.security.app.service.UserService;
 
 import java.util.List;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/users")
@@ -47,20 +49,24 @@ public class UserController {
     @PostMapping
     public UserResponse createUser(@Valid @RequestBody CreateUserRequest createUserRequest){
         User user = userService.saveUser(userMapper.toUser(createUserRequest));
+        log.info("User: {}",user);
+        log.info("CreateUserRequest: {}",createUserRequest);
         return userMapper.toUserResponse(user);
     }
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public UserResponse updateUser(@PathVariable Long id, @RequestBody UpdateUserRequest updateUserRequest){
         User user = userService.validateAndGetUserById(id);
         userMapper.updateUser(updateUserRequest,user);
         user = userService.saveUser(user);
+        log.info("User saveUser: {}",user);
         return userMapper.toUserResponse(user);
 
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id) {
+    public UserResponse deleteUser(@PathVariable Long id) {
         User user = userService.validateAndGetUserById(id);
         userService.deleteUser(user);
+        return userMapper.toUserResponse(user);
     }
 }
